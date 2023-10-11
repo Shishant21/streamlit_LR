@@ -11,17 +11,7 @@ st.set_page_config(page_title="Superstore!!!", page_icon=":bar_chart:",layout="w
 st.title(" :bar_chart: Sample SuperStore EDA")
 st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=True)
 
-fl = st.file_uploader(":file_folder: Upload a file",type=(["csv","txt","xlsx","xls"]))
-if fl is not None:
-    filename = fl.name
-    st.write(filename)
-    df = pd.read_csv(fl,encoding='latin-1')
-
-else:
-    #os.chdir(r"C:/Users/Ajit.singh/Desktop/dashboard")
-    # df = pd.read_csv(r"C:\Users\Ajit.singh\Desktop\dashboard\Superstore.csv",encoding='latin-1')
-    df = pd.read_csv(r"Superstore.csv", header=0)
-
+df= pd.read_csv(r"Superstore.csv", header=0,encoding='latin-1')
 
 col1, col2 = st.columns((2))
 df["Order Date"] = pd.to_datetime(df["Order Date"])
