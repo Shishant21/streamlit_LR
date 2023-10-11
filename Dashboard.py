@@ -1,9 +1,7 @@
 import streamlit as st
-# import plotly.express as DataFrame
 import pandas as pd
 import os
 import warnings
-# import matplotlib as plt
 warnings.filterwarnings('ignore')
 
 st.set_page_config(page_title="Superstore!!!", page_icon=":bar_chart:",layout="wide")
