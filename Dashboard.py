@@ -1,9 +1,9 @@
 import streamlit as st
-import plotly.express as px
+# import plotly.express as DataFrame
 import pandas as pd
 import os
 import warnings
-import matplotlib as plt
+# import matplotlib as plt
 warnings.filterwarnings('ignore')
 
 st.set_page_config(page_title="Superstore!!!", page_icon=":bar_chart:",layout="wide")
@@ -69,13 +69,13 @@ category_df = filtered_df.groupby(by = ["Category"], as_index = False)["Sales"].
 
 with col1:
     st.subheader("Category wise Sales")
-    fig = px.bar(category_df, x = "Category", y = "Sales", text = ['${:,.2f}'.format(float(x)) for x in category_df["Sales"]],
+    fig = DataFrame.bar(category_df, x = "Category", y = "Sales", text = ['${:,.2f}'.format(float(x)) for x in category_df["Sales"]],
                  template = "seaborn")
     st.plotly_chart(fig,use_container_width=True, height = 200)
 
 with col2:
     st.subheader("Region wise Sales")
-    fig = px.pie(filtered_df, values = "Sales", names = "Region", hole = 0.5)
+    fig = DataFrame.pie(filtered_df, values = "Sales", names = "Region", hole = 0.5)
     fig.update_traces(text = filtered_df["Region"], textposition = "outside")
     st.plotly_chart(fig,use_container_width=True)
 
@@ -99,7 +99,7 @@ filtered_df["month_year"] = filtered_df["Order Date"].dt.to_period("M")
 st.subheader('Time Series Analysis')
 
 linechart = pd.DataFrame(filtered_df.groupby(filtered_df["month_year"].dt.strftime("%Y : %b"))["Sales"].sum()).reset_index()
-fig2 = px.line(linechart, x = "month_year", y="Sales", labels = {"Sales": "Amount"},height=500, width = 1000,template="gridon")
+fig2 = DataFrame.line(linechart, x = "month_year", y="Sales", labels = {"Sales": "Amount"},height=500, width = 1000,template="gridon")
 st.plotly_chart(fig2,use_container_width=True)
 
 with st.expander("View Data of TimeSeries:"):
@@ -109,7 +109,7 @@ with st.expander("View Data of TimeSeries:"):
 
 # Create a treem based on Region, category, sub-Category
 st.subheader("Hierarchical view of Sales using TreeMap")
-fig3 = px.treemap(filtered_df, path = ["Region","Category","Sub-Category"], values = "Sales",hover_data = ["Sales"],
+fig3 = DataFrame.treemap(filtered_df, path = ["Region","Category","Sub-Category"], values = "Sales",hover_data = ["Sales"],
                   color = "Sub-Category")
 fig3.update_layout(width = 800, height = 650)
 st.plotly_chart(fig3, use_container_width=True)
@@ -117,13 +117,13 @@ st.plotly_chart(fig3, use_container_width=True)
 chart1, chart2 = st.columns((2))
 with chart1:
     st.subheader('Segment wise Sales')
-    fig = px.pie(filtered_df, values = "Sales", names = "Segment", template = "plotly_dark")
+    fig = DataFrame.pie(filtered_df, values = "Sales", names = "Segment", template = "plotly_dark")
     fig.update_traces(text = filtered_df["Segment"], textposition = "inside")
     st.plotly_chart(fig,use_container_width=True)
 
 with chart2:
     st.subheader('Category wise Sales')
-    fig = px.pie(filtered_df, values = "Sales", names = "Category", template = "gridon")
+    fig = DataFrame.pie(filtered_df, values = "Sales", names = "Category", template = "gridon")
     fig.update_traces(text = filtered_df["Category"], textposition = "inside")
     st.plotly_chart(fig,use_container_width=True)
 
@@ -140,7 +140,7 @@ with st.expander("Summary_Table"):
     st.write(sub_category_Year.style.background_gradient(cmap="Blues"))
 
 # Create a scatter plot
-data1 = px.scatter(filtered_df, x = "Sales", y = "Profit", size = "Quantity")
+data1 = DataFrame.scatter(filtered_df, x = "Sales", y = "Profit", size = "Quantity")
 data1['layout'].update(title="Relationship between Sales and Profits using Scatter Plot.",
                        titlefont = dict(size=20),xaxis = dict(title="Sales",titlefont=dict(size=19)),
                        yaxis = dict(title = "Profit", titlefont = dict(size=19)))
