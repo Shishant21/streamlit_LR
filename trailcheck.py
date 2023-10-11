@@ -8,7 +8,7 @@
 # st.write("Trail test 1")
 
 # import matplotlib as plt
-# import plotly.express as px
+import plotly.express as px
 # from util import same_timestamp
 import streamlit as st
 import numpy as np
