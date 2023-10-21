@@ -98,7 +98,7 @@ with cl2:
 filtered_df["month_year"] = filtered_df["Order Date"].dt.to_period("M")
 st.subheader('Time Series Analysis')
 
-linechart = pd.px(filtered_df.groupby(filtered_df["month_year"].dt.strftime("%Y : %b"))["Sales"].sum()).reset_index()
+linechart = pd.DataFrame(filtered_df.groupby(filtered_df["month_year"].dt.strftime("%Y : %b"))["Sales"].sum()).reset_index()
 fig2 = px.line(linechart, x = "month_year", y="Sales", labels = {"Sales": "Amount"},height=500, width = 1000,template="gridon")
 st.plotly_chart(fig2,use_container_width=True)
 
