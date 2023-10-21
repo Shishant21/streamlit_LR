@@ -7,8 +7,8 @@
 # # df = pd.read_csv(github_csv_url)
 # st.write("Trail test 1")
 
-# import matplotlib as plt
-# import plotly.express as px
+import matplotlib as plt
+import plotly.express as px
 # from util import same_timestamp
 import streamlit as st
 import numpy as np
@@ -56,8 +56,11 @@ df["month_year"] = df["Order Date"].dt.to_period("M")
 st.header("Line Chart ")
 linecharteq = pd.DataFrame(df.groupby(df["month_year"].dt.strftime("%Y : %b"))["Sales"].sum()).reset_index()
 # linechart = pd.DataFrame(df.groupby(df["month_year"].dt.strftime("%Y : %b"))["Sales"].sum()).reset_index()
-linechart= linecharteq[['month_year','Sales']]
+linechart= linecharteq[['Sales','month_year']]
 st.line_chart(linechart)
-# fig2 = px.line(linechart, x = "month_year", y="Sales", labels = {"Sales": "Sales"},height=500, width = 1000,template="gridon")
-# st.plotly_chart(fig2,use_container_width=True) 
+
+st.header("line Chart two")
+linechart = pd.DataFrame(df.groupby(df["month_year"].dt.strftime("%Y : %b"))["Sales"].sum()).reset_index()
+fig2 = px.line(linechart, x = "month_year", y="Sales", labels = {"Sales": "Sales"},height=500, width = 1000,template="gridon")
+st.plotly_chart(fig2,use_container_width=True) 
 
