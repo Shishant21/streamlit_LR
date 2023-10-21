@@ -57,7 +57,7 @@ st.header("Line Chart ")
 linecharteq = pd.DataFrame(df.groupby(df["month_year"].dt.strftime("%Y : %b"))["Sales"].sum()).reset_index()
 # linechart = pd.DataFrame(df.groupby(df["month_year"].dt.strftime("%Y : %b"))["Sales"].sum()).reset_index()
 linechart= linecharteq[['Sales','month_year']]
-st.line_chart(linechart)
+st.line_chart(linechart,x="month_year", y="Sales", color=None, width=1000, height=500, use_container_width=True))
 
 st.header("line Chart two")
 linechart = pd.DataFrame(df.groupby(df["month_year"].dt.strftime("%Y : %b"))["Sales"].sum()).reset_index()
