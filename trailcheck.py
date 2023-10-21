@@ -56,7 +56,7 @@ df["month_year"] = df["Order Date"].dt.to_period("M")
 st.header("Line Chart ")
 linechart = pd.DataFrame(df.groupby(df["month_year"].dt.strftime("%Y : %b"))["Sales"].sum()).reset_index()
 # linechart = pd.DataFrame(df.groupby(df["month_year"].dt.strftime("%Y : %b"))["Sales"].sum()).reset_index()
-linechart.plot( x = "month_year", y="Sales", ax = ax ) 
+linechart.plot( x = "month_year", y="Sales") 
 # fig2 = px.line(linechart, x = "month_year", y="Sales", labels = {"Sales": "Sales"},height=500, width = 1000,template="gridon")
 # st.plotly_chart(fig2,use_container_width=True) 
 
