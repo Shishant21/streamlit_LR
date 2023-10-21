@@ -14,10 +14,10 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 
-tab1, tab2=st.tabs(["Data", "Charts"])
 
   # Streamlit Page Config
 st.set_page_config(page_title="Superstore!!!", page_icon=":bar_chart:",layout="wide")
+tab1, tab2=st.tabs(["Data", "Charts"])
 st.title(" :bar_chart: Sample SuperStore EDA") 
 with tab1:
   #Uploading the data 
