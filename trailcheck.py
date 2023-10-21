@@ -15,11 +15,11 @@ import numpy as np
 import pandas as pd
 
 tab1, tab2=st.tabs(["Data", "Charts"])
-with tab1:
+
   # Streamlit Page Config
-  st.set_page_config(page_title="Superstore!!!", page_icon=":bar_chart:",layout="wide")
-  st.title(" :bar_chart: Sample SuperStore EDA") 
-  
+st.set_page_config(page_title="Superstore!!!", page_icon=":bar_chart:",layout="wide")
+st.title(" :bar_chart: Sample SuperStore EDA") 
+with tab1:
   #Uploading the data 
   df= pd.read_csv(r"Superstore.csv", header=0,encoding='latin-1')
   st.write(df)
