@@ -17,8 +17,8 @@ import pandas as pd
 
   # Streamlit Page Config
 st.set_page_config(page_title="Superstore!!!", page_icon=":bar_chart:",layout="wide")
-tab1, tab2=st.tabs(["Data", "Charts"])
 st.title(" :bar_chart: Sample SuperStore EDA") 
+tab1, tab2=st.tabs(["Data", "Charts"])
 with tab1:
   #Uploading the data 
   df= pd.read_csv(r"Superstore.csv", header=0,encoding='latin-1')
