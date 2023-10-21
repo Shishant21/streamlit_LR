@@ -1,9 +1,9 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-import matplotlib as plt
-import plotly.express as px
-from util import same_timestamp
+# import matplotlib as plt
+# import plotly.express as px
+# from util import same_timestamp
 
 # Streamlit Page Config
 st.set_page_config(page_title="Superstore!!!", page_icon=":bar_chart:",layout="wide")
@@ -45,5 +45,6 @@ df["month_year"] = df["Order Date"].dt.to_period("M")
 #Linechart using Ploty
 st.header("Line Chart ")
 linechart = pd.DataFrame(df.groupby(df["month_year"].dt.strftime("%Y : %b"))["Sales"].sum()).reset_index()
-fig2 = px.line(linechart, x = "month_year", y="Sales", labels = {"Sales": "Sales"},height=500, width = 1000,template="gridon")
-st.plotly_chart(fig2,use_container_width=True) 
+linechart.plot( x = "month_year", y="Sales",labels = {"Sales": "Sales"}, ax = ax ) 
+# fig2 = px.line(linechart, x = "month_year", y="Sales", labels = {"Sales": "Sales"},height=500, width = 1000,template="gridon")
+# st.plotly_chart(fig2,use_container_width=True) 
