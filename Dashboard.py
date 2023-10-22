@@ -20,11 +20,9 @@ df["Order Date"] = pd.to_datetime(df["Order Date"])
 startDate = pd.to_datetime(df["Order Date"]).min()
 endDate = pd.to_datetime(df["Order Date"]).max()
 
-with col1:
-    date1 = pd.to_datetime(st.date_input("Start Date", startDate))
+date1 = pd.to_datetime(st.sidebar.date_input("Start Date", startDate))
 
-with col2:
-    date2 = pd.to_datetime(st.date_input("End Date", endDate))
+date2 = pd.to_datetime(st.sidebar.date_input("End Date", endDate))
 tab1, tab2 = st.tabs(["Data", "Charts"])
 with tab1:
     df = df[(df["Order Date"] >= date1) & (df["Order Date"] <= date2)].copy()
