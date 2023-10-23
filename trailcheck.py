@@ -56,8 +56,9 @@ with tab1:
   
   #converting datetime.date to datetime and adding new Monthly level date variable
   df["Order Date"]=pd.to_datetime(df["Order Date"])
-  df["month_year"] = df["Order Date"].dt.to_period("M")
-
+  df["month_year"] = df["Order Date"].dt.to_period("M")  
+  category_df = df.groupby(by = ["Category"], as_index = False)["Sales"].sum()
+  Segment_df = df.groupby(by = ["Segment"], as_index = False)["Sales"].sum()
 with tab2:
 #Linechart using Ploty
   st.header("Line Chart ")
@@ -70,19 +71,9 @@ with tab2:
     csv =  linechart.to_csv(index = False)
     st.download_button("Download Data", data = csv, file_name = "Linechart.csv", mime = "text/csv",
                        help = 'Click here to download the data as a CSV file')
+
   
-  category_df = df.groupby(by = ["Category"], as_index = False)["Sales"].sum()
-  Segment_df = df.groupby(by = ["Segment"], as_index = False)["Sales"].sum()
-
-  st.subheader('Segment wise Sales')
-  fig = px.pie(Segment_df, values = "Sales", names = "Segment", template = "plotly_dark")
-  fig.update_traces(text = Segment_df["Segment"], textposition = "inside")
-  st.plotly_chart(fig,use_container_width=True)
-
-  with st.expander("Segment wise Sales:"):
-    csv = Segment_df.to_csv(index=False).encode("utf-8")
-    st.download_button('Download Data', data = csv, file_name = "Segment.csv", mime ='text/csv')
-
+with tab2:
   st.subheader('Category wise Sales')
   fig = px.pie(category_df, values = "Sales", names = "Category", template = "gridon")
   fig.update_traces(text = category_df["Category"], textposition = "inside")
