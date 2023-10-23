@@ -32,6 +32,10 @@ with tab1:
   df=df[df["Category"]==cat]
   st.header("Data After Category Filter") 
   st.write(df)
+  with st.expander("Category_ViewData"):
+    csv = df.to_csv(index = False)
+    st.download_button("Download Data", data = csv, file_name = "Category.csv", mime = "text/csv",
+                       help = 'Click here to download the data as a CSV file')
   
   #Converting Object into Datetime.date 
   df["Order Date"] = pd.to_datetime(df["Order Date"]).dt.date
@@ -45,6 +49,10 @@ with tab1:
   df = df.loc[(df['Order Date']>=chosen_dates[0]) & (df['Order Date']<=chosen_dates[1]), :]
   st.header("Data After Date Slider")
   st.write(df)
+  with st.expander("Date_ViewData"):
+    csv = df.to_csv(index = False)
+    st.download_button("Download Data", data = csv, file_name = "Date.csv", mime = "text/csv",
+                       help = 'Click here to download the data as a CSV file')
   
   #converting datetime.date to datetime and adding new Monthly level date variable
   df["Order Date"]=pd.to_datetime(df["Order Date"])
@@ -57,9 +65,36 @@ with tab2:
   # linechart = pd.DataFrame(df.groupby(df["month_year"].dt.strftime("%Y : %b"))["Sales"].sum()).reset_index()
   linechart= linecharteq[['Sales','month_year']]
   st.line_chart(linechart,x="month_year", y="Sales", color=None, width=1000, height=500, use_container_width=True)
-  
-  st.header("line Chart two")
-  linechart = pd.DataFrame(df.groupby(df["month_year"].dt.strftime("%Y : %b"))["Sales"].sum()).reset_index()
-  fig2 = px.line(linechart, x = "month_year", y="Sales", labels = {"Sales": "Sales"},height=500, width = 1000,template="gridon")
-  st.plotly_chart(fig2,use_container_width=True) 
+  with st.expander("linechart_ViewData"):
+    csv =  linechart.to_csv(index = False)
+    st.download_button("Download Data", data = csv, file_name = "Linechart.csv", mime = "text/csv",
+                       help = 'Click here to download the data as a CSV file')
+
+    
+    chart1, chart2 = st.columns((2))
+    
+    category_df = df.groupby(by = ["Category"], as_index = False)["Sales"].sum()
+    Segment_df = df.groupby(by = ["Segment"], as_index = False)["Sales"].sum()
+    with chart1:
+      st.subheader('Segment wise Sales')
+      fig = px.pie(Segment_df, values = "Sales", names = "Segment", template = "plotly_dark")
+      fig.update_traces(text = Segment_df["Segment"], textposition = "inside")
+      st.plotly_chart(fig,use_container_width=True)
+      
+      with st.expander("Segment wise Sales:"):
+        csv = Segment_df.to_csv(index=False).encode("utf-8")
+        st.download_button('Download Data', data = csv, file_name = "Segment.csv", mime ='text/csv')
+
+    with chart2:
+      st.subheader('Category wise Sales')
+      fig = px.pie(category_df, values = "Sales", names = "Category", template = "gridon")
+      fig.update_traces(text = category_df["Category"], textposition = "inside")
+      st.plotly_chart(fig,use_container_width=True)
+      
+      with st.expander("Segment wise Sales:"):
+        csv = category_df.to_csv(index=False).encode("utf-8")
+        st.download_button('Download Data', data = csv, file_name = "category.csv", mime ='text/csv')
+
+
+
   
