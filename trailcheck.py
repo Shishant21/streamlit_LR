@@ -1,22 +1,15 @@
-# import streamlit as st
-# import pandas as pd
-# df= pd.read_csv(r"Superstore.csv", header=0,encoding='latin-1')
-# st.write(df)
-# # df=pd.read_excel('Superstore.xlsx', sheet_name='Sheet1')
-# # github_csv_url="https://github.com/Shishant21/streamlit_LR/blob/main/Superstore.csv"
-# # df = pd.read_csv(github_csv_url)
-# st.write("Trail test 1")
-
 import streamlit as st
-import numpy as np
 import pandas as pd
-import matplotlib as plt
 import plotly.express as px
+import matplotlib as plt
+import os
 import warnings
 warnings.filterwarnings('ignore')
+
 st.set_page_config(page_title="Superstore!!!", page_icon=":bar_chart:",layout="wide")
 
 st.title(" :bar_chart: Sample SuperStore EDA")
+st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=True)
 # from util import same_timestamp
 tab1, tab2 = st.tabs(["Data", "Charts"])
 with tab1:
