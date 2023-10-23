@@ -36,7 +36,7 @@ with tab1:
     csv = df.to_csv(index = False)
     st.download_button("Download Data", data = csv, file_name = "Category.csv", mime = "text/csv",
                        help = 'Click here to download the data as a CSV file')
-  
+  df_month=df
   #Converting Object into Datetime.date 
   df["Order Date"] = pd.to_datetime(df["Order Date"]).dt.date
   df["Ship Date"] = pd.to_datetime(df["Ship Date"]).dt.date
@@ -59,6 +59,7 @@ with tab1:
   df["month_year"] = df["Order Date"].dt.to_period("M")  
   Market_df = df.groupby(by = ["Market"], as_index = False)["Sales"].sum()
   Segment_df = df.groupby(by = ["Segment"], as_index = False)["Sales"].sum()
+  sub_df=df[['Sales','Sub-Category']]
 with tab2:
 #Linechart using Ploty
   st.header("Line Chart ")
@@ -81,7 +82,8 @@ with tab2:
     fig.update_traces(text = Market_df["Market"], textposition = "inside")
     st.plotly_chart(fig,use_container_width=True)
     
-    with st.expander("arket wise Sales:"):
+    with st.expander("Market wise Sales:"):
+      st.write(Market_df)
       csv = Market_df.to_csv(index=False).encode("utf-8")
       st.download_button('Download Data', data = csv, file_name = "Market.csv", mime ='text/csv')
   
@@ -92,8 +94,18 @@ with tab2:
     st.plotly_chart(fig,use_container_width=True)
     
     with st.expander("Segment wise Sales:"):
+      st.write(Segment_df)
       csv = Segment_df.to_csv(index=False).encode("utf-8")
       st.download_button('Download Data', data = csv, file_name = "Segment.csv", mime ='text/csv')
+
+  st.subheader('Sub-Category wise Sales')
+  figbar = px.bar(Sub_df, x='Sub-Category', y='Sales')
+  st.plotly_chart(figbar,use_container_width=True)
+  with st.expander("Sub-Category wise Sales:"):
+      st.write(Sub_df)
+      csv = Sub_df.to_csv(index=False).encode("utf-8")
+      st.download_button('Download Data', data = csv, file_name = "Sub_Category.csv", mime ='text/csv')
+  
   
 
 
