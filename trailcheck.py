@@ -12,11 +12,12 @@ import numpy as np
 import pandas as pd
 import matplotlib as plt
 import plotly.express as px
-# from util import same_timestamp
-
-
+import warnings
+warnings.filterwarnings('ignore')
 st.set_page_config(page_title="Superstore!!!", page_icon=":bar_chart:",layout="wide")
-st.title(" :bar_chart: Sample SuperStore EDA") 
+
+st.title(" :bar_chart: Sample SuperStore EDA")
+# from util import same_timestamp
 tab1, tab2 = st.tabs(["Data", "Charts"])
 with tab1:
   #Uploading the data 
