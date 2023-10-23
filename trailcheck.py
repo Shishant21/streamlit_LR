@@ -77,7 +77,7 @@ with tab2:
   col1, col2 = st.columns((2))
   with col1:
     st.subheader('Market wise Sales')
-    fig = px.pie(Market_df, values = "Sales", names = "Category", template = "gridon")
+    fig = px.pie(Market_df, values = "Sales", names = "Market", template = "gridon")
     fig.update_traces(text = Market_df["Market"], textposition = "inside")
     st.plotly_chart(fig,use_container_width=True)
     
