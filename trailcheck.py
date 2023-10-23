@@ -96,7 +96,7 @@ with tab2:
       st.write(Segment_df)
       csv = Segment_df.to_csv(index=False).encode("utf-8")
       st.download_button('Download Data', data = csv, file_name = "Segment.csv", mime ='text/csv')
-st.write(list(df))
+  
   st.subheader('Sub-Category wise Sales')
   Sub_df=df[['Sub-Category','Sales']]
   figbar = px.bar(Sub_df, x='Sub-Category', y='Sales')
