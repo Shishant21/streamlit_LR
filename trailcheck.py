@@ -99,7 +99,7 @@ with tab2:
 
   st.subheader('Sub-Category wise Sales')
   Sub_df=df[['Sub_Category','Sales']]
-  figbar = px.bar(Sub_df, x='Sub_Category', y='Sales")
+  figbar = px.bar(Sub_df, x='Sub_Category', y='Sales')
   st.plotly_chart(figbar,use_container_width=True)
   with st.expander("Sub-Category wise Sales:"):
       st.write(Sub_df)
