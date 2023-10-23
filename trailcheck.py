@@ -22,6 +22,11 @@ with tab1:
   df=df[df["Market"].isin(market)] #Updating the Dataframe
   st.header("Data After Market Filter")
   st.write(df)
+   with st.expander("Market_ViewData"):
+            st.write(df.style.background_gradient(cmap="Blues"))
+            csv = df.to_csv(index = False).encode('utf-8')
+            st.download_button("Download Data", data = csv, file_name = "Market.csv", mime = "text/csv",
+                                help = 'Click here to download the data as a CSV file')
   
   #SelectBox Widget( Takes only 1 Input)
   cat=st.sidebar.selectbox(label='Category',options=df['Category'].unique())
