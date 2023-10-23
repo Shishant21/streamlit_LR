@@ -23,7 +23,7 @@ with tab1:
   st.header("Data After Market Filter")
   st.write(df)
   with st.expander("Market_ViewData"):
-    st.write(df.style.background_gradient(cmap="Blues"))
+    # st.write(df.style.background_gradient)
     csv = df.to_csv(index = False).encode('utf-8')
     st.download_button("Download Data", data = csv, file_name = "Market.csv", mime = "text/csv",
                        help = 'Click here to download the data as a CSV file')
