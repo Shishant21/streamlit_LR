@@ -71,29 +71,26 @@ with tab2:
     st.download_button("Download Data", data = csv, file_name = "Linechart.csv", mime = "text/csv",
                        help = 'Click here to download the data as a CSV file')
   
-chart1, chart2 = st.columns((2))
-category_df = df.groupby(by = ["Category"], as_index = False)["Sales"].sum()
-Segment_df = df.groupby(by = ["Segment"], as_index = False)["Sales"].sum()
-with tab2:
-  with chart1:
-    st.subheader('Segment wise Sales')
-    fig = px.pie(Segment_df, values = "Sales", names = "Segment", template = "plotly_dark")
-    fig.update_traces(text = Segment_df["Segment"], textposition = "inside")
-    st.plotly_chart(fig,use_container_width=True)
-    
-    with st.expander("Segment wise Sales:"):
-      csv = Segment_df.to_csv(index=False).encode("utf-8")
-      st.download_button('Download Data', data = csv, file_name = "Segment.csv", mime ='text/csv')
+  category_df = df.groupby(by = ["Category"], as_index = False)["Sales"].sum()
+  Segment_df = df.groupby(by = ["Segment"], as_index = False)["Sales"].sum()
 
-  # with chart2:
-  #   st.subheader('Category wise Sales')
-  #   fig = px.pie(category_df, values = "Sales", names = "Category", template = "gridon")
-  #   fig.update_traces(text = category_df["Category"], textposition = "inside")
-  #   st.plotly_chart(fig,use_container_width=True)
-    
-  #   with st.expander("Segment wise Sales:"):
-  #     csv = category_df.to_csv(index=False).encode("utf-8")
-  #     st.download_button('Download Data', data = csv, file_name = "category.csv", mime ='text/csv')
+  st.subheader('Segment wise Sales')
+  fig = px.pie(Segment_df, values = "Sales", names = "Segment", template = "plotly_dark")
+  fig.update_traces(text = Segment_df["Segment"], textposition = "inside")
+  st.plotly_chart(fig,use_container_width=True)
+
+  with st.expander("Segment wise Sales:"):
+    csv = Segment_df.to_csv(index=False).encode("utf-8")
+    st.download_button('Download Data', data = csv, file_name = "Segment.csv", mime ='text/csv')
+
+  st.subheader('Category wise Sales')
+  fig = px.pie(category_df, values = "Sales", names = "Category", template = "gridon")
+  fig.update_traces(text = category_df["Category"], textposition = "inside")
+  st.plotly_chart(fig,use_container_width=True)
+  
+  with st.expander("Segment wise Sales:"):
+    csv = category_df.to_csv(index=False).encode("utf-8")
+    st.download_button('Download Data', data = csv, file_name = "category.csv", mime ='text/csv')
 
 
 
