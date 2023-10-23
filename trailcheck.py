@@ -98,7 +98,7 @@ with tab2:
       st.download_button('Download Data', data = csv, file_name = "Segment.csv", mime ='text/csv')
 
   st.subheader('Sub-Category wise Sales')
-  Sub_df=df[['Sales','Sub-Category']]
+  Sub_df=df[['Sub_Category','Sales']]
   figbar = px.bar(Sub_df, x='Sub-Category', y='Sales")
   st.plotly_chart(figbar,use_container_width=True)
   with st.expander("Sub-Category wise Sales:"):
