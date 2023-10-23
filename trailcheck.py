@@ -96,17 +96,8 @@ with tab2:
       st.write(Segment_df)
       csv = Segment_df.to_csv(index=False).encode("utf-8")
       st.download_button('Download Data', data = csv, file_name = "Segment.csv", mime ='text/csv')
-
-  st.subheader('Sub-Category wise Sales')
-  # Sub_df=df[['Sub_Category','Sales']]
+st.write(list(df))
   
-  st.write(list(df))
-  # figbar = px.bar(Sub_df, x='Sub_Category', y='Sales')
-  # st.plotly_chart(figbar,use_container_width=True)
-  # with st.expander("Sub-Category wise Sales:"):
-  #     st.write(Sub_df)
-  #     csv = Sub_df.to_csv(index=False).encode("utf-8")
-  #     st.download_button('Download Data', data = csv, file_name = "Sub_Category.csv", mime ='text/csv')
   
   
 
