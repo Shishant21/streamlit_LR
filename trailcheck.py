@@ -57,7 +57,7 @@ with tab1:
   #converting datetime.date to datetime and adding new Monthly level date variable
   df["Order Date"]=pd.to_datetime(df["Order Date"])
   df["month_year"] = df["Order Date"].dt.to_period("M")  
-  category_df = df.groupby(by = ["Category"], as_index = False)["Sales"].sum()
+  Market_df = df.groupby(by = ["Market"], as_index = False)["Sales"].sum()
   Segment_df = df.groupby(by = ["Segment"], as_index = False)["Sales"].sum()
 with tab2:
 #Linechart using Ploty
@@ -76,14 +76,14 @@ with tab2:
 with tab2:
   col1, col2 = st.columns((2))
   with col1:
-    st.subheader('Category wise Sales')
-    fig = px.pie(category_df, values = "Sales", names = "Category", template = "gridon")
-    fig.update_traces(text = category_df["Category"], textposition = "inside")
+    st.subheader('Market wise Sales')
+    fig = px.pie(Market_df, values = "Sales", names = "Category", template = "gridon")
+    fig.update_traces(text = Market_df["Market"], textposition = "inside")
     st.plotly_chart(fig,use_container_width=True)
     
-    with st.expander("Segment wise Sales:"):
-      csv = category_df.to_csv(index=False).encode("utf-8")
-      st.download_button('Download Data', data = csv, file_name = "category.csv", mime ='text/csv')
+    with st.expander("arket wise Sales:"):
+      csv = Market_df.to_csv(index=False).encode("utf-8")
+      st.download_button('Download Data', data = csv, file_name = "Market.csv", mime ='text/csv')
   
   with col2:
     st.subheader('Segment wise Sales')
