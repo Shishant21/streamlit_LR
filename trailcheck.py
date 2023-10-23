@@ -80,17 +80,11 @@ with tab2:
     fig = px.pie(category_df, values = "Sales", names = "Category", template = "gridon")
     fig.update_traces(text = category_df["Category"], textposition = "inside")
     st.plotly_chart(fig,use_container_width=True)
+    
     with st.expander("Segment wise Sales:"):
       csv = category_df.to_csv(index=False).encode("utf-8")
       st.download_button('Download Data', data = csv, file_name = "category.csv", mime ='text/csv')
-  with col2:
-    st.subheader('Segment wise Sales')
-    fig = px.pie(Segment_df, values = "Sales", names = "Segment", template = "plotly_dark")
-    fig.update_traces(text = Segment_df["Segment"], textposition = "inside")
-    st.plotly_chart(fig,use_container_width=True)
-    with st.expander("Segment wise Sales:"):
-      csv = Segment_df.to_csv(index=False).encode("utf-8")
-      st.download_button('Download Data', data = csv, file_name = "Segment.csv", mime ='text/csv')
+  
 
 
 
