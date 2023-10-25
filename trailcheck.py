@@ -5,12 +5,10 @@ import matplotlib as plt
 import os
 import warnings
 warnings.filterwarnings('ignore')
-
 st.set_page_config(page_title="Superstore!!!", page_icon=":bar_chart:",layout="wide")
-
 st.title(" :bar_chart: Sample SuperStore EDA")
 st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=True)
-# from util import same_timestamp
+#using st.tabs for different tabs
 tab1, tab2 = st.tabs(["Data", "Charts"])
 with tab1:
   #Uploading the data 
@@ -22,6 +20,7 @@ with tab1:
   df=df[df["Market"].isin(market)] #Updating the Dataframe
   st.header("Data After Market Filter")
   st.write(df)
+  #using st.download_button to add the Download functionality
   with st.expander("Market_ViewData"):
     csv = df.to_csv(index = False)
     st.download_button("Download Data", data = csv, file_name = "Market.csv", mime = "text/csv",
